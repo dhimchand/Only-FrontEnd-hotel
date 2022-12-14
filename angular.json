@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "hotel-dhimas"
+    }
+  },
+  "defaultProject": "hotel-dhimas",
+  "cli": {
+    "analytics": false
+  }
 }
