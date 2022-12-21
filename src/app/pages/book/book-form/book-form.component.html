@@ -1,1 +1,179 @@
-<p>book-form works!</p>
+<div
+  class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+>
+  <h1 class="h2">Tambah Data Pemesanan Kamar Hotel OIYO</h1>
+</div>
+
+<div class="card">
+  <div class="card-header">Form Hotel OIYO</div>
+  <div class="card-body">
+    <form [formGroup]="bookingGroup" (ngSubmit)="onSubmitReservation() ">
+      <div class="mb-3 row" formGroupName="reserve">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Nama</label>
+        <div class="col-sm-8">
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': isFormValid('reserve.name') }"
+            id="staticEmail"
+            formControlName="name"
+            [readOnly]="bookingGroup.value.id"
+            placeholder="Nama pemesan"
+          />
+          <app-validation-message
+            [control]="bookingGroup.get('reserve.name')"
+            [field]="'name'"
+          ></app-validation-message>
+        </div>
+      </div>
+      <div class="mb-3 row" [formGroupName]="'reserve'">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-8">
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': isFormValid('reserve.email') }"
+            id="inputPassword"
+            formControlName="email"
+            [readOnly]="bookingGroup.value.id"
+            placeholder="Email pemesan"
+          />
+          <app-validation-message
+            [control]="bookingGroup.get('reserve.email')"
+            [field]="'email'"
+          ></app-validation-message>
+        </div>
+      </div>
+      <div class="mb-3 row" [formGroupName]="'reserve'">
+        <label for="inputPassword" class="col-sm-2 col-form-label"
+          >No Handphone</label
+        >
+        <div class="col-sm-8">
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': isFormValid('reserve.phone') }"
+            id="inputPassword"
+            formControlName="phone"
+            [readOnly]="bookingGroup.value.id"
+            placeholder="No handphone pemesan"
+            (keypress)="keyPress($event)"
+          />
+          <app-validation-message
+            [control]="bookingGroup.get('reserve.phone')"
+            [field]="'no handphone'"
+          ></app-validation-message>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"
+          >Nomor Kamar</label
+        >
+        <div class="col-sm-8">
+
+            <select
+            type="text"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': isFormValid('roomNumber') }"
+            id="inputPassword"
+            formControlName="roomNumber"
+            placeholder="Nomor kamar"
+            
+            >
+              <option *ngFor="let item of roomsAvailable"  [value]="item.number">{{item.number}}</option>
+            </select>
+            
+            <app-validation-message
+            [control]="bookingGroup.get('roomNumber')"
+            [field]="'nomor kamar'"
+          ></app-validation-message>
+        </div>
+        <!-- <div class="col-sm-8">
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': isFormValid('roomNumber') }"
+            id="inputPassword"
+            formControlName="roomNumber"
+            placeholder="Nomor kamar"
+          />
+          
+        </div> -->
+      </div>
+      <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"
+          >Lama Menginap</label
+        >
+        <div class="col-sm-8">
+          <input
+            type="number"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': isFormValid('duration') }"
+            id="inputPassword"
+            formControlName="duration"
+            placeholder="Lama menginap"
+            (keypress)="keyPress($event)"
+          />
+          <app-validation-message
+            [control]="bookingGroup.get('duration')"
+            [field]="'lama menginap'"
+          ></app-validation-message>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"
+          >Jumlah Tamu</label
+        >
+        <div class="col-sm-8">
+
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              type="number"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': isFormValid('guestCount') }"
+              id="inputPassword"
+              formControlName="guestCount"
+              placeholder="Jumlah tamu"
+              
+            >
+              <option *ngFor="let item of guestCountOption" [value]="item">{{item}}</option>
+            </select>
+        </div>
+        <!-- <div class="col-sm-8">
+          <input
+            type="number"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': isFormValid('guestCount') }"
+            id="inputPassword"
+            formControlName="guestCount"
+            [readOnly]="bookingGroup.value.id"
+            placeholder="Jumlah tamu"
+            (keypress)="keyPressGuestCount($event)"
+          />
+          <app-validation-message
+            [control]="bookingGroup.get('guestCount')"
+            [field]="'jumlah tamu'"
+          ></app-validation-message>
+        </div> -->
+      </div>
+      <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-8">
+          <button
+            class="btn btn-outline-primary"
+            [disabled]="!bookingGroup.valid"
+          >
+            <i class="bi bi-save"></i> Simpan</button
+          >&nbsp;
+          <button
+            class="btn btn-outline-secondary"
+            routerLink="/backoffice/book"
+          >
+            <i class="bi bi-arrow-left"></i> Kembali
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

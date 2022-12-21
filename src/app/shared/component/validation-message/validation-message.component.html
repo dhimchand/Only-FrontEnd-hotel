@@ -1,1 +1,5 @@
-<p>validation-message works!</p>
+<div *ngIf="hasError()" class="form-text text-danger">
+    <span *ngFor="let key of getErrors()" class="d-block">
+      {{ getMessage(key) }}
+    </span>
+  </div>

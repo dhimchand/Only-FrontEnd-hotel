@@ -1,1 +1,72 @@
-<p>pages works!</p>
+
+
+
+<div class="d-flex" id="wrapper">
+  <!-- Sidebar -->
+  <div
+    class="bg-danger border-right"
+    id="sidebar-wrapper"
+    [ngClass]="status ? 'hide' : 'show'"
+  >
+    <div class="sidebar-heading text-light"> <h2 class="text-center">OIYO</h2>  </div>
+    <div class="list-group list-group-flush">
+      <a routerLink="/backoffice/dashboard" class="list-group-item list-group-item-action text-light bg-danger"
+        >Dashboard</a
+      >
+      <a routerLink="/backoffice/book" class="list-group-item list-group-item-action text-light bg-danger"
+        >Daftar Tamu</a
+      >
+      <a routerLink="/backoffice/book/rooms" class="list-group-item list-group-item-action text-light bg-danger"
+        >Catat Kamar</a
+      >
+      <!-- <a href="#" class="list-group-item list-group-item-action bg-light"
+        ></a
+      >
+      <a href="#" class="list-group-item list-group-item-action bg-light"
+        >Events</a
+      >
+      <a href="#" class="list-group-item list-group-item-action bg-light"
+        >Profile</a
+      >
+      <a href="#" class="list-group-item list-group-item-action bg-light"
+        >Status</a -->
+      
+    </div>
+  </div>
+  <!-- /#sidebar-wrapper -->
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <button class="btn btn-primary" (click)="clickEvent()" >
+            <i class="bi bi-arrow-bar-right" *ngIf="status"></i>
+            <i class="bi bi-arrow-bar-left" *ngIf="!status"></i>
+        </button>
+        <!-- <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button> -->
+        <button class="btn btn-danger" (click)="onSignedOut()" href="javascript:void(0)">
+            Log Out
+          </button>
+        
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <main class="m-2">
+        <router-outlet>
+
+        </router-outlet>
+      </main>
+    </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+</div>
+<!-- /#wrapper -->

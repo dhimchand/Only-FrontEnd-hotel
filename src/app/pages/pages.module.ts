@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { BookComponent } from './book/book.component';
 import { PagesRoutingModule } from './pages-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { SessionService } from '../shared/services/session.service';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -11,7 +13,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     PagesRoutingModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ]
 })
 export class PagesModule { }

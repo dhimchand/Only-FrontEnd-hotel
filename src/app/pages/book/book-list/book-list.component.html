@@ -1,1 +1,72 @@
-<p>book-list works!</p>
+<div  class="m-2 p-4">
+  <div
+    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2"
+  >
+    <h2>List Tamu</h2>
+    <div class="btn btn-outline-primary" routerLink="/backoffice/book/form">
+      <i class="bi bi-plus"></i> Tambah
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">Daftar Tamu Hotel OIYO</div>
+    <div class="card-body">
+      <table class="table text-center">
+        <thead class="table-danger">
+          <tr>
+            <th scope="col">BookingID</th>
+            <th scope="col">Nama Pemesan</th>
+            <th scope="col">Nomor Kamar</th>
+            <th scope="col">Durasi Menginap</th>
+            <th scope="col">Total Biaya</th>
+            <th scope="col">Jumlah Tamu</th>
+            <th scope="col">Status Pemesanan</th>
+            <th scope="col">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let booking of bookings">
+            <th scope="row">{{ booking.id }}</th>
+            <td>{{ booking.reserve.name }}</td>
+            <td>{{ booking.roomNumber }}</td>
+            <td>{{ booking.duration }} malam</td>
+            <td>{{ viewedPrice.format(booking.duration * nightlyFee) }}</td>
+            <td>{{ booking.guestCount }}</td>
+            <td>{{ booking.status }}</td>
+            <td>
+              <span class="">
+                <button
+                  class="btn btn-primary m-1"
+                  (click)="onCheckIn(booking.id)"
+                  *ngIf="booking.status == 'reserved'"
+                >
+                  Check-In
+                </button>
+                <button
+                  class="btn btn-success m-1"
+                  (click)="onCheckOut(booking.id, booking.roomNumber)"
+                  *ngIf="booking.status == 'checked-in'"
+                >
+                  Check-Out
+                </button>
+                <button
+                  class="btn btn-warning m-1"
+                  (click)="onReserve(booking)"
+                  *ngIf="booking.status != 'checked-out'"
+                >
+                  Edit
+                </button>
+                <button
+                  class="btn btn-danger m-1"
+                  (click)="onDeleteReservation(booking.id)"
+                  *ngIf="booking.status == 'checked-out'"
+                >
+                  Hapus
+                </button>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
